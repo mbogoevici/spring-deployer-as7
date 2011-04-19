@@ -26,7 +26,7 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-    <groupId>spring-deployer-as7</groupId>
+    <groupId>org.jboss.as.spring</groupId>
     <artifactId>spring-deployer-as7</artifactId>
     <version>1.0-SNAPSHOT</version>
 
@@ -39,11 +39,33 @@
                     <target>1.6</target>
                 </configuration>
             </plugin>
+            <plugin>
+                <artifactId>maven-assembly-plugin</artifactId>
+
+                <executions>
+                    <execution>
+                        <id>make-module</id>
+                        <phase>package</phase>
+                        <goals>
+                            <goal>single</goal>
+                        </goals>
+                        <configuration>
+                            <finalName>jboss-spring-deployer-as7</finalName>
+                            <appendAssemblyId>true</appendAssemblyId>
+                            <descriptors>
+                                <descriptor>${basedir}/src/main/assembly/deployer.xml</descriptor>
+                            </descriptors>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
         </plugins>
     </build>
 
-     <properties>
+    <properties>
         <version.org.jboss.as>7.0.0.Beta3-SNAPSHOT</version.org.jboss.as>
+        <version.spring>3.0.5.RELEASE</version.spring>
+        <version.snowdrop>2.0.0-SNAPSHOT</version.snowdrop>
     </properties>
 
     <dependencies>
@@ -57,6 +79,54 @@
             <groupId>org.jboss.as</groupId>
             <artifactId>jboss-as-server</artifactId>
             <version>${version.org.jboss.as}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-asm</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-beans</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-context-support</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-expression</artifactId>
+            <version>${version.spring}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.snowdrop</groupId>
+            <artifactId>snowdrop-vfs</artifactId>
+            <version>${version.snowdrop}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.jboss.snowdrop</groupId>
+            <artifactId>snowdrop-deployers-common</artifactId>
+            <version>${version.snowdrop}</version>
         </dependency>
     </dependencies>
 

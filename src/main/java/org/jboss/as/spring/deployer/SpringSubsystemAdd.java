@@ -61,6 +61,8 @@ public class SpringSubsystemAdd implements ModelAddOperationHandler, BootOperati
             final BootOperationContext bootContext = (BootOperationContext) context;
             context.getRuntimeContext().setRuntimeTask(new RuntimeTask() {
                 public void execute(RuntimeTaskContext context) throws OperationFailedException {
+                    bootContext.addDeploymentProcessor(Phase.PARSE,  Integer.MAX_VALUE, new SpringStructureProcessor());
+                    bootContext.addDeploymentProcessor(Phase.INSTALL,  Integer.MAX_VALUE, new SpringBootstrapProcessor());
                     resultHandler.handleResultComplete();
                 }
             });
