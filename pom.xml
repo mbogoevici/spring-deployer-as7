@@ -63,7 +63,7 @@
     </build>
 
     <properties>
-        <version.org.jboss.as>7.0.0.Beta3-SNAPSHOT</version.org.jboss.as>
+        <version.org.jboss.as>7.0.0.Beta4-SNAPSHOT</version.org.jboss.as>
         <version.spring>3.0.5.RELEASE</version.spring>
         <version.snowdrop>2.0.0-SNAPSHOT</version.snowdrop>
     </properties>
